@@ -1,0 +1,152 @@
+<td-layout [class]="activeTheme">
+    <td-layout-nav color="none" logo="">
+        <div td-toolbar-content layout="row" layout-align="start center" flex>
+            <span hide-gt-xs class="mat-subhead">Landing</span>
+            <span hide-xs class="mat-subhead">Landing Page</span>
+            <span flex ></span>
+            <button mat-icon-button matTooltip="Switch Light Theme" *ngIf="activeTheme === 'theme-dark'" (click)="theme('theme-light')">
+                <mat-icon>brightness_high</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Switch Dark Theme" *ngIf="activeTheme != 'theme-dark'" (click)="theme('theme-dark')">
+                <mat-icon>brightness_low</mat-icon>
+            </button>
+            <span>Signin</span>
+            <button mat-icon-button [matMenuTriggerFor]="signinMenu">
+                <mat-icon>input</mat-icon>
+            </button>
+            <mat-menu #signinMenu="matMenu">
+                <td-menu (click)="$event.stopPropagation()" class="pad">
+                    <app-form-signin *ngIf="!signinView"></app-form-signin>
+                    <app-qr-signin *ngIf="signinView"></app-qr-signin>
+                    <button  mat-button color="accent" td-menu-footer (click)="signinView=!signinView">
+                        switch signin
+                    </button>
+                </td-menu>
+            </mat-menu>
+        </div>
+
+        <section>
+            <div layout-gt-xs="row">
+                <div flex class="pad" tdMediaToggle="gt-xs" [mediaClasses]="['pad-xl']">
+                <div class="push-top-xl" hide-xs></div>
+                <div tdMediaToggle="gt-sm" [mediaClasses]="['push-lg']">
+                    <h1 class="mat-display-3 accent-color push-top-xs push-bottom-sm">Procom.</h1>
+                    <h2 class="mat-headline push-top-xs push-bottom-sm">make Profit with eCommerce</h2>
+                    <p class="mat-subhead tc-grey-600">Some descriptive Text goes here</p>
+                    <button mat-raised-button color="accent" class="push-bottom" [@instantCollapse]="triggerState" (click)="triggerState=!triggerState">Create an account</button>
+                </div>
+                <div class="push-bottom-xl" hide-xs></div>
+                </div>
+                <div tdMediaToggle="gt-xs" [mediaAttributes]="{'flex':[50,100]}" layout="row" layout-align="center center">
+                    <app-form-signup  [@instantCollapse]="!triggerState"></app-form-signup>
+                    <div [@delayedCollapse]="triggerState"> Some other content eg. SVG Illustrations</div>
+                </div>
+            </div>
+        </section>
+        
+        <mat-divider></mat-divider>
+
+        <section  tdMediaToggle="gt-xs" [mediaClasses]="['pad-top-md', 'pad-bottom-xl']">
+            <h2 class="mat-display-1 text-upper text-center push-bottom push-top-sm push-top-xs">features</h2>
+            <div layout="row" layout-align-gt-xs="center center">
+                <div flex-gt-xs="80" layout="row" layout-wrap>
+                    <ng-template let-item let-last="last" ngFor [ngForOf]="[0,1,2,3]">
+                        <div class="text-center" flex-xs="50" flex-gt-xs="25">
+                        Main Features Here
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+            <div class="text-center push-top push-bottom-sm">
+                <button mat-raised-button color="accent" class="mat-button-lg">See it in action</button>
+            </div>
+        </section>
+
+        <mat-divider></mat-divider>
+
+        <section>
+            <h2 class="mat-display-1 text-upper text-center push-bottom push-top-sm">Plans</h2>
+            <div  layout-gt-xs="row" layout-align-gt-xs="center center">
+                <div layout-gt-xs="row" flex-gt-xs="90" layout-margin>
+                    <span flex></span>
+                    <div flex-gt-xs="40">
+                        <mat-card>
+                        <mat-toolbar color="accent" class="push-bottom">
+                            <span class="text-upper">Plan1</span>
+                        </mat-toolbar>
+                        <mat-card-subtitle>Info about plan1 - like for Small businesses</mat-card-subtitle>
+                        <mat-divider></mat-divider>
+                        <mat-list>
+                            <mat-list-item>
+                                <h4 matLine>Info Field 1- eg. price</h4>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <h4 matLine>Info Field 2 etc.</h4>
+                            </mat-list-item>
+                        </mat-list>
+                        <mat-divider></mat-divider>
+                        <mat-card-actions>
+                            <a mat-button color="accent" class="text-upper">Choose this</a>
+                        </mat-card-actions>
+                        </mat-card>
+                    </div>
+                    <div flex-gt-xs="40">
+                        <mat-card>
+                            <mat-toolbar color="accent" class="push-bottom">
+                            <span class="text-upper">Plan2</span>
+                            </mat-toolbar>
+                            <mat-card-subtitle>Info about plan2 - like for Small businesses</mat-card-subtitle>
+                            <mat-divider></mat-divider>
+                            <mat-list>
+                                <mat-list-item>
+                                    <h4 matLine>Info Field 1- eg. price</h4>
+                                </mat-list-item>
+                                <mat-list-item>
+                                    <h4 matLine>Info Field 2 etc.</h4>
+                                </mat-list-item>
+                            </mat-list>
+                            <mat-divider></mat-divider>
+                            <mat-card-actions>
+                            <a mat-button color="accent" class="text-upper">Choose this</a>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                    <span flex></span>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="bgc-blue-grey-800 tc-blue-grey-100">
+            <div layout-gt-xs="row" layout-align-gt-xs="center center">
+                <div layout-gt-xs="row" flex-gt-xs="80" layout-margin layout-padding>
+                <div flex-gt-xs>
+                    <mat-nav-list>
+                        <h3 mat-subheader class="text-upper tc-blue-grey-100">About Procom</h3>
+                        <mat-list-item>
+                            <p matLine class="tc-blue-grey-300">Company Info</p>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <p matLine class="tc-blue-grey-300">Customers</p>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <p matLine class="tc-blue-grey-300">In media</p>
+                        </mat-list-item>
+                    </mat-nav-list>
+                </div>
+                <div flex-gt-xs="10">
+            </div>
+            <div flex layout="column" flex-gt-xs="30">
+                A bigger icon of company goes here
+                <p class="mat-body-1">&copy; Copyright 2018 Procom, All rights reserved.</p>
+            </div>
+            </div>
+        </div>  
+        </section>
+
+        <a mat-fab color="accent" matTooltip="Contact Us" matTooltipPosition="above" class="mat-fab-position-bottom-right fixed"> 
+            <mat-icon>send</mat-icon>
+        </a>
+    </td-layout-nav>
+</td-layout>
+      

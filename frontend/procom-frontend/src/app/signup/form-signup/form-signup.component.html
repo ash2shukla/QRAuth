@@ -1,0 +1,94 @@
+<form [formGroup]="signupForm">
+    <td-steps>
+        <td-step #step1 label="What should we call you?" [active]="true">
+            <div formGroupName="name">
+                <mat-form-field color="accent">
+                    <input matInput placeholder="First name" formControlName="first_name" />  
+                    <mat-error *ngIf="signupForm.get('name').get('first_name').invalid">
+                        {{ getFirstNameErrorMessage() }}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field color="accent">
+                    <input matInput placeholder="last name" formControlName="last_name" />
+                    <mat-error *ngIf="signupForm.get('name').get('last_name').invalid">
+                        {{ getLastNameErrorMessage() }}
+                    </mat-error>
+                </mat-form-field>
+            </div>   
+        </td-step>
+
+        <td-step #step2 label="What is your business called?" (activated)="checkPreviousValid()">
+            <mat-form-field color="accent">
+                <input matInput placeholder="Business Title" formControlName="business_name" />
+                <mat-error *ngIf="signupForm.get('business_name').invalid">
+                    {{ getBusinessNameErrorMessage() }}
+                </mat-error>
+            </mat-form-field>
+        </td-step>
+
+        <td-step #step3 label="Choose a secure passwod.">
+            <div formGroupName="password">
+                <mat-form-field color="accent">
+                    <input matInput placeholder="Password" formControlName="password" />
+                    <mat-error *ngIf="signupForm.get('password').get('password').invalid">
+                        {{ getPasswordErrorMessage() }}
+                    </mat-error>
+                </mat-form-field>
+                
+                <mat-form-field color="accent">
+                    <input matInput placeholder="Repeat Password" formControlName="repeatPassword" [errorStateMatcher]="confirmValidParentMatcher"/>
+                    <mat-error *ngIf="signupForm.get('password').get('repeatPassword').invalid">
+                        {{ getRepeatPasswordErrorMessage() }}
+                    </mat-error>
+                    <mat-error *ngIf="signupForm.get('password').hasError('mismatch')">
+                        {{ getPasswordGroupErrorMessage() }}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </td-step>
+
+        <td-step #step4 label="Provide a mail to contact you." sublabel="You can use this mail to later login.">
+            <mat-form-field color="accent">
+                <input matInput placeholder="youmail@email.com" formControlName="email" />
+                <mat-error *ngIf="signupForm.get('email').invalid">
+                    {{ getEmailErrorMessage() }}
+                </mat-error>
+                <mat-hint *ngIf="signupForm.get('email').status === 'PENDING'">
+                    Checking...
+                </mat-hint>
+                <mat-hint *ngIf="signupForm.get('email').status === 'VALID'">
+                    Email available.
+                </mat-hint>
+            </mat-form-field>
+        </td-step>
+
+        <td-step #step5 label="Provide a contact number." sublabel="An OTP for verification will be sent to this number. You can use this number to login as well!">
+            <mat-form-field color="accent">
+                <input matInput placeholder="Contact Number" formControlName="mobile" />
+                <mat-error *ngIf="signupForm.get('mobile').invalid">
+                    {{ getMobileErrorMessage() }}
+                </mat-error>  
+                <mat-error *ngIf="mobileExists.status">
+                    {{ mobileExists.message }}
+                </mat-error>
+                <mat-hint *ngIf="signupForm.get('email').status === 'PENDING'">
+                    Checking...
+                </mat-hint>
+                <mat-hint *ngIf="signupForm.get('email').status === 'VALID'">
+                    Mobile available.
+                </mat-hint>
+            </mat-form-field>
+            <button mat-button color="accent" class="push right" (click)="signupSubmit()">Send OTP</button>
+            <div [@tdCollapse]="collapseState">
+                <mat-form-field color="accent">
+                    <input matInput #otp placeholder="OTP" maxlength="6" [formControl]="otpFormControl" />
+                    <mat-hint align="end">{{otp.value.length}} / 6</mat-hint>
+                    <mat-error *ngIf="signupForm.get('mobile').invalid">
+                        {{ getOtpErrorMessage() }}
+                    </mat-error>
+                </mat-form-field>
+                <button class="push right" color="accent" mat-button (click)="otpSubmit()">Complete Signup</button>
+             </div>
+        </td-step>
+    </td-steps>
+</form>

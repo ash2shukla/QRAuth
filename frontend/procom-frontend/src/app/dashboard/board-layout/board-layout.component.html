@@ -1,0 +1,81 @@
+<td-layout [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : 'push'" [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '240px' : '100%'" [class]="activeTheme">
+
+    <td-layout-nav color="none" [toolbarTitle]="(media.registerQuery('gt-xs') | async) ? 'Procom Dashboard' : ''">
+        <!-- main toolbar content start -->
+        <div td-toolbar-content layout="row" layout-align="start center" flex>
+            <!-- Top toolbar for static content eg. notifications, profile views etc. -->
+            <span flex></span>
+            <button mat-icon-button matTooltip="Switch Light Theme" *ngIf="activeTheme === 'theme-dark'" (click)="theme('theme-light')">
+                <mat-icon>brightness_high</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Switch Dark Theme" *ngIf="activeTheme != 'theme-dark'" (click)="theme('theme-dark')">
+                <mat-icon>brightness_low</mat-icon>
+            </button>
+            
+            <!-- Notifications Menu and trigger start -->
+            <button mat-icon-button matTooltip="Alerts" [matMenuTriggerFor]="notificationsMenu">
+                <td-notification-count color="accent" [notifications]="4">
+                <mat-icon>notifications</mat-icon>
+                </td-notification-count>
+            </button>
+
+            <mat-menu #notificationsMenu="matMenu">
+                 <!-- User related option eg. Logout and Manage Profile -->
+                <td-menu>
+                    <div td-menu-header class="mat-subhead">Notifications</div>
+                    <mat-nav-list dense>
+                        <ng-template let-last="last" ngFor [ngForOf]="[0,1,2]">
+                            <a mat-list-item>
+                                <mat-icon matListAvatar>today</mat-icon>
+                                <h4 mat-line><span class="text-wrap">Small notifications here.</span></h4>
+                            </a>
+                            <mat-divider *ngIf="!last"></mat-divider>
+                        </ng-template>
+                    </mat-nav-list>
+                    <button mat-button color="accent" td-menu-footer>
+                        See All Notifications
+                    </button>
+                </td-menu>
+            </mat-menu>
+            <!-- Notifications menu and trigger end -->
+
+            <span>{{(media.registerQuery('gt-xs') | async) ? 'Signout' : ''}}</span>
+            <button mat-icon-button matTooltip="Signout" (click)="logoutUser()">
+                <mat-icon>power_settings_new</mat-icon>
+            </button>
+
+        </div>
+        <!-- main toolbar content end -->
+
+        <td-layout-manage-list #manageList
+              [opened]="media.registerQuery('gt-sm') | async"
+              [mode]="(media.registerQuery('gt-sm') | async) ? 'side' :  'over'"
+              [sidenavWidth]="!miniNav ? '257px' : '64px'">
+
+            <!-- Dashboard Index start -->
+            <div td-sidenav-content layout="column" layout-fill>
+                <!-- Index of dashboards eg. Products Orders etc. -->
+                <mat-toolbar color="accent">
+                    <mat-icon class="push-left-xs" [matTooltip]="!miniNav ? '' : 'Dashboards'" matTooltipPosition="after">dashboard</mat-icon>
+                    <span *ngIf="!miniNav" class="push-left-sm">Dashboards</span>
+                </mat-toolbar>
+                <mat-nav-list flex [tdLayoutManageListClose]="!media.query('gt-sm')">
+                    <a mat-list-item routerLink='/dashboard/product' routerLinkActive="active">
+                        <mat-icon matListIcon>assignment</mat-icon>
+                        <span>Product Dashboard</span>
+                    </a>
+                    <a mat-list-item routerLink='/dashboard/order' routerLinkActive="active">
+                        <mat-icon matListIcon>assignment</mat-icon>
+                        <span>Order Dashboard</span>
+                    </a>
+                </mat-nav-list>
+            </div>
+            <!-- Dashboard Index end -->
+
+            <!-- Main Dashboard Content start -->
+            <mat-sidenav-container [@slide]="animateState" flex>
+                <router-outlet #routerRef></router-outlet>
+            </mat-sidenav-container>
+        </td-layout-manage-list>
+    </td-layout-nav>
+  </td-layout>

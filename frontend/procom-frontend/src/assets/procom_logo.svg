@@ -1,0 +1,33 @@
+<svg width="252" height="204" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="206" width="254" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g id="svg_28">
+   <g id="svg_29">
+    <g id="svg_30">
+     <g id="svg_31">
+      <ellipse ry="51" rx="53" id="svg_1" cy="82.939705" cx="115.000895" stroke-width="0" stroke="#000" fill="#ff7f00"/>
+      <text font-weight="normal" transform="matrix(6.76359, 0, 0, 5.81405, -1171.72, -785.204)" xml:space="preserve" text-anchor="start" font-family="Arvo, sans-serif" font-size="24" id="svg_3" y="157.775168" x="182.618573" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ffffff">P</text>
+      <rect id="svg_5" height="17" width="12" y="82.939705" x="98.000895" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ff7f00"/>
+      <rect width="0" id="svg_6" height="1" y="151.939705" x="165.000895" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ff7f00"/>
+      <rect id="svg_7" height="10" width="3" y="81.939705" x="107.000895" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ff7f00"/>
+      <rect width="0" id="svg_8" height="1" y="181.939705" x="195.000895" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ff7f00"/>
+      <rect id="svg_9" height="24" width="16" y="78.939705" x="95.413266" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ff7f00"/>
+      <rect height="0" id="svg_10" width="1" y="92.939705" x="109.000895" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ff7f00"/>
+      <rect id="svg_11" height="4" width="4" y="88.939705" x="104.000895" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ff7f00"/>
+      <ellipse rx="0.5" id="svg_18" cy="93.939705" cx="135.500895" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ff7f00"/>
+      <path id="svg_26" d="m76.000893,45.939705" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ff7f00"/>
+      <path id="svg_27" d="m344.000885,106.939697" opacity="0.5" fill-opacity="null" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ff7f00"/>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

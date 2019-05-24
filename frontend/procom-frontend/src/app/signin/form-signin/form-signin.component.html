@@ -1,0 +1,24 @@
+<div class="overflow-hidden text-center">
+  <form [formGroup]="signinForm">
+    
+    <mat-form-field appearance="fill">
+      <mat-label>email or mobile</mat-label>
+      <input matInput placeholder="Enter registered mobile or email" formControlName="id_field"/>
+      <mat-icon matSuffix>contact</mat-icon>
+      <mat-error *ngIf="signinForm.get('id_field').invalid">
+        {{ getIdFieldErrorMessage() }}
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill">
+      <mat-label>password</mat-label>
+      <input matInput formControlName="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      <mat-error *ngIf="signinForm.get('password').invalid">
+        {{ getPasswordErrorMessage() }}
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-button (click)="signinSubmit()">signin</button>
+  </form>
+</div>

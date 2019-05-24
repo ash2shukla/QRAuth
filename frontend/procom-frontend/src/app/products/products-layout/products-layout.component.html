@@ -1,0 +1,40 @@
+<td-layout-nav color="accent">
+    
+    <!-- Dashboard Toolbar start  -->
+
+    <div td-toolbar-content flex layout="row" layout-align="start center">
+        <button mat-icon-button tdLayoutManageListToggle>
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span hide-xs>Product Dashboard</span>
+        <span flex></span>
+
+        <button mat-icon-button matToolTip="Dashboard Settings" [matMenuTriggerFor]="dashboardSettings">
+            <mat-icon>settings</mat-icon>
+        </button>
+
+        <mat-menu #dashboardSettings="matMenu">
+            <td-menu>
+            <div td-menu-header class="mat-subhead">Product Dashboard Settings</div>
+            <mat-nav-list dense>
+                <ng-template let-last="last" ngFor [ngForOf]="[0,1,2]">
+                <a mat-list-item>
+                    <h4 mat-line><span class="text-wrap">Some settings for dashboard</span></h4>
+                </a>
+                <mat-divider *ngIf="!last"></mat-divider>
+                </ng-template>
+            </mat-nav-list>
+            </td-menu>
+        </mat-menu> 
+    </div>
+
+    <!-- Dashboard toolbar end -->
+    
+    <!-- Dashboard content start -->
+    <div flex layout-gt-sm="row" tdMediaToggle="gt-xs" layout-wrap [mediaClasses]="['push-sm']">
+        <div flex-gt-sm="100">
+        </div>
+    </div>
+    <!-- Dashboard Content end -->
+</td-layout-nav>
+

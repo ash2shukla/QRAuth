@@ -1,0 +1,3 @@
+<ul style="list-style: none">
+    <li *ngFor="let log of logs; let i = index; trackBy: trackByFn">{{log | json }}</li>
+</ul>

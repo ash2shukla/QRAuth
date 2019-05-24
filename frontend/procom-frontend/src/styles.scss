@@ -1,0 +1,119 @@
+@import '~@angular/material/theming';
+@import '~@covalent/core/theming/all-theme';
+
+$typography: mat-typography-config(
+  $font-family: 'Roboto, monospace',
+  $headline: mat-typography-level(32px, 48px, 700)
+);
+
+@include mat-core($typography);
+
+$accent: mat-palette($mat-orange, 800, 100, 900);
+$primary: mat-palette($mat-orange, 800, 100, 900);
+
+$warn:    mat-palette($mat-red, 600, 100, 900);
+
+$theme: mat-light-theme($primary, $accent, $warn);
+
+@include angular-material-theme($theme);
+@include covalent-theme($theme, $typography);
+ 
+ $foreground: map-get($theme, foreground);
+ $background: map-get($theme, background);
+
+ mat-nav-list, mat-list {
+     [mat-list-item].active {
+         mat-icon[matListAvatar] {
+             background-color: mat-color($accent);
+             color: mat-color($accent, default-contrast);
+         }
+         mat-icon[matListIcon] {
+             color: mat-color($accent);
+         }
+     }
+ }
+ 
+ [ngx-charts-axis-label] text {
+     fill: mat-color($foreground, secondary-text);
+ }
+ .tick text {
+     fill: mat-color($foreground, disabled);
+ }
+ .gridline-path {
+     &.gridline-path-horizontal,
+     &.gridline-path-vertical {
+         stroke: rgba(black, 0.06);
+     }
+ }
+ .legend-title-text {
+     color: mat-color($foreground, secondary-text);
+ }
+ 
+ $primary-dark: mat-palette($mat-blue-grey, 900);
+ $accent-dark:  mat-palette($mat-orange, 800, 100, 900);
+// dark theme
+ .theme-dark {
+     $warn-dark:    mat-palette($mat-red, 600);
+     $theme-dark: mat-dark-theme($primary-dark, $accent-dark, $warn-dark);
+     @include angular-material-theme($theme-dark);
+     @include covalent-theme($theme-dark, $typography);
+ 
+     .tc-primary {
+         color: mat-color($primary-dark);
+     }
+     .tc-accent,
+     a {
+         color: mat-color($accent-dark);
+     }
+     a:hover {
+         color: darken(mat-color($accent-dark), 10%);
+     }
+     .tc-warn {
+         color: mat-color($warn-dark);
+     }
+ 
+     // NGX Charts
+     [ngx-charts-axis-label] text,
+     .tick text {
+         fill: rgba(white, 0.5);
+     }
+     .gridline-path {
+         &.gridline-path-horizontal,
+         &.gridline-path-vertical {
+             stroke: rgba(white, 0.06);
+         }
+     }
+     .legend-title-text {
+         color: rgba(white, 0.5);
+     }
+ }
+ 
+ // Drag'n'drop grab
+ mat-card-title{
+   &:hover {
+     cursor: grab;
+     cursor: -moz-grab;
+     cursor: -webkit-grab;
+   }
+   &:active {
+     cursor: grabbing;
+     cursor: -moz-grabbing;
+     cursor: -webkit-grabbing;
+   }
+ }
+
+ .accent-color {
+    color: mat-color($accent) !important;
+  }
+
+  .primary-color {
+    color: mat-color($primary) !important;
+  }
+
+  .dark-accent-color {
+      color: mat-color($accent-dark) !important
+  }
+
+  .dark-primary-color {
+    color: mat-color($primary-dark) !important
+}

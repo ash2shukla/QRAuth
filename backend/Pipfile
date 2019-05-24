@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+channels = "*"
+channels-redis = "*"
+djangorestframework = "*"
+"psycopg2-binary" = "*"
+cryptography = "*"
+django-redis = "*"
+twisted = {version = "*", extras = ["tls", "http2"]}
+coreapi = "*"
+django-cors-headers = "*"
+qrcode = {version = "*", extras = ["pil"]}
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"
